@@ -291,16 +291,15 @@ section h2::after {
 }
 
 .video-container video {
-  width: 90%;
-  max-width: 720px;
-  aspect-ratio: 16 / 9; /* ensures same height-to-width ratio */
+  width: 70%;
   height: auto;
-  border-radius: 16px;
-  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.2);
-  object-fit: cover;
-  background: #000; /* adds clean black background behind video */
-  outline: none;
-  transition: transform 0.3s ease;
+  max-height: 600px;
+  object-fit: contain; /* shows full video without cropping */
+  background-color: #000; /* adds black background for letterboxing */
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  display: block;
+  margin: 0 auto;
 }
 
 .video-container video:hover {
@@ -399,4 +398,5 @@ footer p {
   .video-container video {
     width: 100%;
   }
+
 }
