@@ -1,0 +1,402 @@
+/* =========================================
+   GLOBAL STYLES
+========================================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+  background: radial-gradient(circle at top left, #fff8e7 0%, #fff4cc 35%, #fef6d8 70%, #fffdf5 100%);
+  color: #222;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* Optional: subtle floating sparkle overlay */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background: repeating-radial-gradient(
+    circle,
+    rgba(255, 215, 0, 0.05) 0,
+    rgba(255, 255, 255, 0.05) 2px,
+    transparent 3px
+  );
+  animation: sparkleMove 25s linear infinite;
+  opacity: 0.4;
+  z-index: 0;
+}
+
+/* Gentle shimmer movement */
+@keyframes sparkleMove {
+  from {
+    transform: translate(0, 0);
+  }
+  to {
+    transform: translate(-30px, -30px);
+  }
+}
+
+/* Keep content above background sparkles */
+header,
+section,
+footer {
+  position: relative;
+  z-index: 1;
+}
+
+h1, h2, h3 {
+  font-weight: 700;
+}
+
+/* Smooth fade for entire sections */
+section {
+  padding: 60px 0;
+  animation: fadeIn 1.2s ease forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================================
+   HEADER / HERO SECTION
+========================================= */
+header {
+  background: linear-gradient(135deg, #b8860b, #6a4f1b);
+  text-align: center;
+  padding: 80px 20px;
+  color: #fffaf3;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  animation: fadeInHeader 1.5s ease-in-out forwards;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Shimmering title */
+header h1 {
+  font-size: 2.8rem;
+  margin-bottom: 25px;
+  letter-spacing: 1px;
+  color: #fffaf3;
+  background: linear-gradient(
+    90deg,
+    #fffaf3 0%,
+    #ffd700 25%,
+    #fffaf3 50%,
+    #ffd700 75%,
+    #fffaf3 100%
+  );
+  background-size: 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 5s linear infinite, fadeUp 1.5s ease forwards 0.3s;
+  opacity: 0;
+  text-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+  position: relative;
+}
+
+/* Golden shimmer underline below the title */
+header h1::after {
+  content: "";
+  display: block;
+  width: 120px;
+  height: 3px;
+  margin: 10px auto 0;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #ffd700, #fff8dc, #ffd700);
+  background-size: 200%;
+  animation: shimmerLine 4s linear infinite;
+  box-shadow: 0 0 8px rgba(255, 215, 0, 0.4);
+}
+
+/* Subtitle fade-in */
+header p {
+  font-size: 1.2rem;
+  font-style: italic;
+  color: #fbeec1;
+  opacity: 0;
+  animation: fadeUp 1.5s ease forwards 0.8s;
+}
+
+/* ANIMATIONS */
+@keyframes fadeInHeader {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes shimmerLine {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+
+/* =========================================
+   SECTION HEADERS
+========================================= */
+section h2 {
+  text-align: center;
+  font-size: 2rem;
+  color: #b8860b;
+  margin-bottom: 35px;
+  letter-spacing: 0.5px;
+  position: relative;
+}
+
+section h2::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 3px;
+  background-color: #f0d89a;
+  margin: 10px auto 0;
+  border-radius: 2px;
+}
+
+/* =========================================
+   GALLERY GRID
+========================================= */
+.gallery {
+  background: linear-gradient(180deg, #fffaf3, #fff3e6);
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+  padding: 0 30px;
+}
+
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 14px;
+  text-align: center;
+  background: #fff;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.gallery-item:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* =========================================
+   IMAGE STYLING
+========================================= */
+.gallery-item img {
+  width: 100%;
+  height: auto;
+  border-radius: 14px 14px 0 0;
+  display: block;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+
+/* =========================================
+   CAPTION FADE + SLIDE-UP EFFECT
+========================================= */
+.caption {
+  position: absolute;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  width: 90%;
+  background: rgba(255, 255, 255, 0.9);
+  color: #6a4f1b;
+  font-weight: 600;
+  font-style: italic;
+  font-size: 0.95rem;
+  border-radius: 8px;
+  padding: 8px 10px;
+  opacity: 0;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.gallery-item:hover .caption {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* =========================================
+   VIDEO SECTION
+========================================= */
+.video-section {
+  text-align: center;
+  background: #fff3e6;
+  padding: 60px 20px;
+  margin-top: 60px;
+  border-top: 2px solid #f0d89a;
+}
+
+.video-section h2 {
+  color: #b8860b;
+  margin-bottom: 25px;
+  font-size: 2rem;
+}
+
+.video-container {
+  margin-bottom: 45px;
+}
+
+.video-container video {
+  width: 90%;
+  max-width: 720px;
+  aspect-ratio: 16 / 9; /* ensures same height-to-width ratio */
+  height: auto;
+  border-radius: 16px;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.2);
+  object-fit: cover;
+  background: #000; /* adds clean black background behind video */
+  outline: none;
+  transition: transform 0.3s ease;
+}
+
+.video-container video:hover {
+  transform: scale(1.02);
+}
+
+.video-caption {
+  margin-top: 15px;
+  font-style: italic;
+  color: #6a4f1b;
+  font-weight: 500;
+}
+
+/* =========================================
+   FOOTER WITH GOLDEN SHIMMER LINE
+========================================= */
+footer {
+  position: relative;
+  text-align: center;
+  background: linear-gradient(135deg, #6a4f1b, #3e2a00);
+  color: #fffaf3;
+  padding: 35px 20px 25px;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+  margin-top: 60px;
+  overflow: hidden;
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Glowing gold shimmer line at the top */
+footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 160px;
+  height: 3px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #ffd700, #fff8dc, #ffd700);
+  background-size: 200%;
+  animation: shimmerLine 4s linear infinite;
+  box-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
+}
+
+/* Footer text */
+footer p {
+  margin: 0;
+  line-height: 1.6;
+  font-style: italic;
+  animation: fadeUp 1.2s ease forwards;
+}
+
+/* Shimmer animation (reuse from header) */
+@keyframes shimmerLine {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+
+
+/* =========================================
+   MOBILE OPTIMIZATION
+========================================= */
+@media (max-width: 768px) {
+  header h1 {
+    font-size: 2rem;
+  }
+
+  section h2 {
+    font-size: 1.6rem;
+  }
+
+  .gallery-item {
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+  }
+
+  .caption {
+    position: static;
+    opacity: 1;
+    transform: none;
+    background: none;
+    margin-top: 8px;
+    padding: 0;
+    font-size: 1rem;
+  }
+
+  .gallery-item img {
+    transform: none !important;
+    opacity: 1 !important;
+  }
+
+  .video-container video {
+    width: 100%;
+  }
+}
